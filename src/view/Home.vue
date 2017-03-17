@@ -1,8 +1,9 @@
 <template>
   <div>
-    <HeaderComponent />
+    <HeaderComponent :gameRound="gameRound"/>
     <main>
-      <DataAnalyze :dataAttribute="dataAttribute" />
+      <button v-on:click="undoClick" class="btn" type="button">UNDO</button>
+      <DataAnalyze :dataAttribute="dataAttribute" :gameRound="gameRound"/>
       <TableSelector :itemClick="itemClick" :dataStore="dataStore"/>
       
     </main>
@@ -23,11 +24,16 @@
     },
     data: function() {
       return {
+        gameRound: 0,
         dataAttribute: {
           odd: 0,
+          oddCon: 0,
           even: 0,
+          evenCon: 0,
           black: 0,
+          blackCon: 0,
           red: 0,
+          redCon: 0,
           zero: 0,
         },
         dataStore: {
@@ -72,7 +78,14 @@
       }
     },
     methods: {
+      undoClick: function() {
+        console.log(this.previous);
+        console.log(this.lastColor);
+      },
       itemClick: function(data) {
+        this.gameRound++;
+
+
         if (data === 0) {
           this.dataAttribute.zero += 1;
           this.dataStore[0] = this.dataStore[0] ? this.dataStore[0] + 1 : 1;
@@ -80,22 +93,31 @@
           this.dataStore[data.num] = this.dataStore[data.num] ? this.dataStore[data.num] + 1 : 1;
           if (data.num % 2 === 0) {
             this.dataAttribute.even += 1;
-
+            this.dataAttribute.oddCon = 0;
+            this.dataAttribute.evenCon += 1;
           } else {
             this.dataAttribute.odd += 1;
-
+            this.dataAttribute.evenCon = 0;
+            this.dataAttribute.oddCon += 1;
           }
 
           if (data.color === "black") {
             this.dataAttribute.black += 1;
-
+            this.dataAttribute.redCon = 0;
+            this.dataAttribute.blackCon += 1;
           } else {
             this.dataAttribute.red += 1;
-
+            this.dataAttribute.blackCon = 0;
+            this.dataAttribute.redCon += 1;
           }
         }
-        console.log(this.dataStore);
       }
     }
   }
 </script>
+
+<style>
+.btn {
+  border: 1px solid black;
+}
+</style>

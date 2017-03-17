@@ -185,11 +185,19 @@
 
 .counter-click {
   color: white;
+  display: inline-block;
+  font-size: 30px;
 }
 
 .main-num {
   font-size: 30px;
+  width: 75%;
   text-align: center;
+  display: inline-block;
+}
+
+.main-num .zero-special {
+  width: 90%;
 }
 
 .red {

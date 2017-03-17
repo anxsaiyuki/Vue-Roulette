@@ -10,6 +10,14 @@
           <td>{{dataAttribute.red}}</td>
           <td>{{dataAttribute.black}}</td>
         </tr>
+        <tr>
+          <td>{{ Math.floor((dataAttribute.red / gameRound) * 100, 2) }}%</td>
+          <td>{{ Math.floor((dataAttribute.black / gameRound) * 100, 2) }}%</td>
+        </tr>
+        <tr>
+          <td>{{dataAttribute.redCon}}</td>
+          <td>{{dataAttribute.blackCon}}</td>
+        </tr>
       </table>
     </div>
     <div class="odd-even">
@@ -21,6 +29,14 @@
         <tr>
           <td>{{dataAttribute.odd}}</td>
           <td>{{dataAttribute.even}}</td>
+        </tr>
+        <tr>
+          <td>{{ Math.floor((dataAttribute.odd / gameRound) * 100, 2) }}%</td>
+          <td>{{ Math.floor((dataAttribute.even / gameRound) * 100, 2) }}%</td>
+        </tr>
+        <tr>
+          <td>{{dataAttribute.oddCon}}</td>
+          <td>{{dataAttribute.evenCon}}</td>
         </tr>
       </table>
     </div>
@@ -40,16 +56,18 @@
 <script>
   export default {
     name: 'Data Analyze',
-    props: ["dataAttribute"],
+    props: ["dataAttribute", "gameRound"],
   }
 </script>
 
 <style>
 .color {
   text-align: center;
+  display: inline-block;
 }
 
 .odd-even {
   text-align: center;
+  display: inline-block;
 }
 </style>
