@@ -3,6 +3,22 @@
     <div class="color">
       <table>
         <tr>
+          <th></th>
+        </tr>
+        <tr>
+          <td>Number</td>
+        </tr>
+        <tr>
+          <td>Percentage</td>
+        </tr>
+        <tr>
+          <td>Consecutive</td>
+        </tr>
+      </table>
+    </div>
+    <div class="color">
+      <table>
+        <tr>
           <th>Red</th>
           <th>Black</th>
         </tr>
@@ -40,6 +56,43 @@
         </tr>
       </table>
     </div>
+    <div>
+      <div class="region">
+        <table>
+          <tr>
+            <th></th>
+          </tr>
+          <tr>
+            <td>Number</td>
+          </tr>
+          <tr>
+            <td>Percentage</td>
+          </tr>
+          <tr>
+            <td>Consecutive</td>
+          </tr>
+        </table>
+      </div>
+      <div class="region">
+        <table>
+          <tr>
+            <th>REGION 1</th>
+            <th>REGION 2</th>
+            <th>REGION 3</th>
+          </tr>
+          <tr>
+            <td>{{dataAttribute.region1}}</td>
+            <td>{{dataAttribute.region2}}</td>
+            <td>{{dataAttribute.region3}}</td>
+          </tr>
+          <tr>
+            <td>{{dataAttribute.region1Con}}</td>
+            <td>{{dataAttribute.region2Con}}</td>
+            <td>{{dataAttribute.region3Con}}</td>
+          </tr>
+        </table>
+      </div>
+    </div>
     <div class="special-attr">
       <table>
         <tr>
@@ -67,6 +120,11 @@
 }
 
 .odd-even {
+  text-align: center;
+  display: inline-block;
+}
+
+.region {
   text-align: center;
   display: inline-block;
 }

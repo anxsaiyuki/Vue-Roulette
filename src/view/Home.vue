@@ -35,6 +35,12 @@
           red: 0,
           redCon: 0,
           zero: 0,
+          region1: 0,
+          region1Con: 0,
+          region2: 0,
+          region2Con: 0,
+          region3: 0,
+          region3Con: 0,
         },
         dataStore: {
           0:0,
@@ -90,6 +96,8 @@
           this.dataAttribute.zero += 1;
           this.dataStore[0] = this.dataStore[0] ? this.dataStore[0] + 1 : 1;
         } else {
+
+          //Odd Even
           this.dataStore[data.num] = this.dataStore[data.num] ? this.dataStore[data.num] + 1 : 1;
           if (data.num % 2 === 0) {
             this.dataAttribute.even += 1;
@@ -101,6 +109,7 @@
             this.dataAttribute.oddCon += 1;
           }
 
+          //Color
           if (data.color === "black") {
             this.dataAttribute.black += 1;
             this.dataAttribute.redCon = 0;
@@ -110,7 +119,29 @@
             this.dataAttribute.blackCon = 0;
             this.dataAttribute.redCon += 1;
           }
+
+          //Region
+          if (data.num >= 1 && data.num <= 12) {
+            this.dataAttribute.region1 += 1;
+            this.dataAttribute.region1Con += 1;
+            this.dataAttribute.region2Con = 0;
+            this.dataAttribute.region3Con = 0;
+          } else if (data.num >= 13 && data.num <= 24) {
+            this.dataAttribute.region2 += 1;
+            this.dataAttribute.region2Con += 1;
+            this.dataAttribute.region1Con = 0;
+            this.dataAttribute.region3Con = 0;
+          } else if (data.num >= 25 && data.num <= 36) {
+            this.dataAttribute.region3 += 1;
+            this.dataAttribute.region3Con += 1;
+            this.dataAttribute.region1Con = 0;
+            this.dataAttribute.region2Con = 0;
+          } 
         }
+
+
+        
+
       }
     }
   }
