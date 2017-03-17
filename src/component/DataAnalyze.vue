@@ -66,9 +66,6 @@
             <td>Number</td>
           </tr>
           <tr>
-            <td>Percentage</td>
-          </tr>
-          <tr>
             <td>Consecutive</td>
           </tr>
         </table>
