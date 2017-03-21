@@ -3,9 +3,10 @@
     <HeaderComponent :gameRound="gameRound"/>
     <main>
       <button v-on:click="undoClick" class="btn" type="button">UNDO</button>
+      <button data-remodal-target="modal" class="btn btn-modal" type="button">Open</button>
+      <RouletteModal />
       <DataAnalyze :dataAttribute="dataAttribute" :gameRound="gameRound"/>
       <TableSelector :itemClick="itemClick" :dataStore="dataStore"/>
-      
     </main>
   </div>
 </template>
@@ -14,13 +15,15 @@
   import HeaderComponent from '../component/Header';
   import TableSelector from '../component/TableSelector';
   import DataAnalyze from '../component/DataAnalyze';
+  import RouletteModal from '../component/RouletteModal';
 
   export default {
     name: 'Home',
     components: {
       HeaderComponent,
       TableSelector,
-      DataAnalyze
+      DataAnalyze,
+      RouletteModal
     },
     data: function() {
       return {
@@ -80,23 +83,29 @@
           34:0,
           35:0,
           36:0
-        }
+        },
+        recentNumber: 0,
+        lastNumber: [],
       }
     },
     methods: {
       undoClick: function() {
-        console.log(this.previous);
-        console.log(this.lastColor);
+        console.log(this.lastNumber);
+        var last = this.lastNumber.pop()
       },
       itemClick: function(data) {
         this.gameRound++;
 
-
+        var num = 0;
+        this.lastNumber.push(this.recentNumber)
         if (data === 0) {
+          this.recentNumber = 0;
           this.dataAttribute.zero += 1;
           this.dataStore[0] = this.dataStore[0] ? this.dataStore[0] + 1 : 1;
         } else {
-
+          num = data.num;
+          $(`.mark-${this.recentNumber}`).removeClass("recent");
+          this.recentNumber = data.num;
           //Odd Even
           this.dataStore[data.num] = this.dataStore[data.num] ? this.dataStore[data.num] + 1 : 1;
           if (data.num % 2 === 0) {
@@ -139,8 +148,9 @@
           } 
         }
 
-
-        
+        //Update Image
+        $(`.mark-${num}`).addClass("recent");
+        $(`.mark-${num}`).html(this.dataStore[num]);
 
       }
     }
@@ -150,5 +160,9 @@
 <style>
 .btn {
   border: 1px solid black;
+}
+
+.btn-modal {
+  float: right;
 }
 </style>
